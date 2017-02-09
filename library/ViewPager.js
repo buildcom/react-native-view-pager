@@ -104,11 +104,12 @@ export default class ViewPager extends Component {
 
   render() {
     let dataSource = this.state.dataSource;
+    let list = this.props.pageDataArray;
+    if (!list) {
+      list = [];
+    }
+    this.pageCount = list.length;
     if (this.state.width && this.state.height) {
-      let list = this.props.pageDataArray;
-      if (!list) {
-        list = [];
-      }
       dataSource = dataSource.cloneWithRows(list);
       this.pageCount = list.length;
     }
@@ -177,7 +178,20 @@ export default class ViewPager extends Component {
     }
   }
 
-  componentDidUpdate() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.initialPage !== this.props.initialPage) {
+      if (typeof nextProps.initialPage === 'number') {
+        if (Platform.OS === 'ios') {
+          this.scrollToPage(nextProps.initialPage, true);
+        } else {
+          //A trick to solve bugs on Android. Delay a little
+          setTimeout(this.scrollToPage.bind(this, nextProps.initialPage, true), 0);
+        }
+      }
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
     if (!this.initialPageSettled) {
       this.initialPageSettled = true;
       if (Platform.OS === 'ios') {

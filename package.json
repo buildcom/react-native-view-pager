@@ -1,6 +1,6 @@
 {
-  "name": "@ldn0x7dc/react-native-view-pager",
-  "version": "0.0.9",
+  "name": "@buildcom/react-native-view-pager",
+  "version": "0.1.0",
   "description": "",
   "main": "library/ViewPager.js",
   "scripts": {
@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react-native-gesture-responder": "0.1.1",
-    "react-native-scroller": "0.0.6",
+    "react-native-gesture-responder": "buildcom/react-native-gesture-responder#v0.2.0",
+    "react-native-scroller": "buildcom/react-native-scroller#v0.0.6",
     "react-mixin": "^3.0.5",
     "react-timer-mixin": "^0.13.3"
   }
