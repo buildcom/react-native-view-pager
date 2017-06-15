@@ -49,7 +49,7 @@ export default class ViewPager extends Component {
       width: 0,
       height: 0,
       dataSource: ds.cloneWithRows([])
-    }
+    };
 
     this.scroller = new Scroller(true, (dx, dy, scroller) => {
       if (dx === 0 && dy === 0 && scroller.isFinished()) {
@@ -58,7 +58,9 @@ export default class ViewPager extends Component {
         }
       } else {
         const curX = this.scroller.getCurrX();
-        this.refs['innerListView'].scrollTo({x: curX, animated: false});
+        if (this.refs['innerListView']) {
+			this.refs['innerListView'].scrollTo({x: curX, animated: false});
+		}
 
         let position = Math.floor(curX / (this.state.width + this.props.pageMargin));
         position = this.validPage(position);
