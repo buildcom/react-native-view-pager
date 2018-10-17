@@ -22,6 +22,7 @@ export default class ViewPager extends Component {
     scrollEnabled: PropTypes.bool,
     renderPage: PropTypes.func,
     pageDataArray: PropTypes.array,
+    scrollEventThrottle: PropTypes.number,
 
     onPageSelected: PropTypes.func,
     onPageScrollStateChanged: PropTypes.func,
@@ -33,6 +34,7 @@ export default class ViewPager extends Component {
     pageMargin: 0,
     scrollEnabled: true,
     pageDataArray: [],
+    scrollEventThrottle: 0,
   };
 
   pageCount = 0; //Initialize to avoid undefined error
@@ -128,7 +130,7 @@ export default class ViewPager extends Component {
         style={[this.props.style, {flex: 1}]}
         {...gestureResponder}>
         <ListView
-          style={{flex: 1}}
+          style={{ flex: 1 }}
           ref='innerListView'
           scrollEnabled={false}
           horizontal={true}
@@ -136,6 +138,7 @@ export default class ViewPager extends Component {
           dataSource={dataSource}
           renderRow={this.renderRow.bind(this)}
           onLayout={this.onLayout.bind(this)}
+          scrollEventThrottle={this.props.scrollEventThrottle}
         />
       </View>
     );
