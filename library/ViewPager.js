@@ -136,7 +136,7 @@ export default class ViewPager extends Component {
           dataSource={dataSource}
           renderRow={this.renderRow.bind(this)}
           onLayout={this.onLayout.bind(this)}
-          scrollEventThrottle={16}
+          scrollEventThrottle={this.props.scrollEventThrottle ? this.props.scrollEventThrottle : 0}
         />
       </View>
     );
