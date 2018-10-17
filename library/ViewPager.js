@@ -128,7 +128,7 @@ export default class ViewPager extends Component {
         style={[this.props.style, {flex: 1}]}
         {...gestureResponder}>
         <ListView
-          style={{flex: 1}}
+          style={{ flex: 1 }}
           ref='innerListView'
           scrollEnabled={false}
           horizontal={true}
@@ -136,6 +136,7 @@ export default class ViewPager extends Component {
           dataSource={dataSource}
           renderRow={this.renderRow.bind(this)}
           onLayout={this.onLayout.bind(this)}
+          scrollEventThrottle={16}
         />
       </View>
     );
